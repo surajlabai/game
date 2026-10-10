@@ -12,7 +12,7 @@
 
   .container { max-width: 900px; margin: 0 auto; padding-bottom: 60px; }
 
-  /* ═══ HOME ═══ */
+  /* HOME */
   .home-header { text-align: center; padding: 30px 0 20px; }
   .home-header h1 { font-size: 1.9rem; color: #60a5fa; margin-bottom: 8px; }
   .home-header p { color: #94a3b8; font-size: 0.9rem; }
@@ -23,7 +23,7 @@
   .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 5px; }
   .card-desc { font-size: 0.82rem; color: #94a3b8; line-height: 1.4; }
 
-  /* ═══ PAGE WRAPPER ═══ */
+  /* PAGE */
   .page { display: none; }
   .page.active { display: block; }
 
@@ -49,191 +49,105 @@
   .page-title { font-size: 1.15rem; font-weight: 800; }
   .page-subtitle { font-size: 0.75rem; color: #94a3b8; margin-top: 2px; }
 
-  /* ═══ LETTERS GRID ═══ */
+  /* LETTERS */
   .letters-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; }
-  .letter-card {
-    background: #131828; border: 2px solid #1e293b; border-radius: 12px;
-    padding: 14px 10px; text-align: center; cursor: pointer; transition: all 0.2s;
-  }
+  .letter-card { background: #131828; border: 2px solid #1e293b; border-radius: 12px; padding: 14px 10px; text-align: center; cursor: pointer; transition: all 0.2s; }
   .letter-card:hover { border-color: #60a5fa; transform: translateY(-3px); }
   .letter-big { font-size: 1.7rem; font-weight: 900; color: #60a5fa; line-height: 1; margin-bottom: 3px; }
   .letter-small { font-size: 1rem; color: #94a3b8; margin-bottom: 5px; }
   .letter-sound { font-size: 0.72rem; color: #4ade80; font-weight: 700; }
   .letter-examples { font-size: 0.6rem; color: #64748b; margin-top: 4px; line-height: 1.2; }
 
-  /* ═══ SOUND CATEGORY ═══ */
+  /* MENU */
   .menu-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
-  .menu-btn {
-    background: #131828; border: 2px solid #1e293b; border-radius: 14px;
-    padding: 18px 14px; cursor: pointer; transition: all 0.2s; text-align: center;
-  }
+  .menu-btn { background: #131828; border: 2px solid #1e293b; border-radius: 14px; padding: 18px 14px; cursor: pointer; transition: all 0.2s; text-align: center; }
   .menu-btn:hover { border-color: #60a5fa; transform: translateY(-3px); }
   .menu-btn .icon { font-size: 1.6rem; margin-bottom: 6px; }
   .menu-btn .title { font-size: 0.88rem; font-weight: 800; margin-bottom: 3px; }
   .menu-btn .sub { font-size: 0.7rem; color: #94a3b8; }
 
-  .sound-category {
-    background: #131828; border: 2px solid #1e293b; border-radius: 14px;
-    padding: 16px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s;
-    display: flex; align-items: center; gap: 14px;
-  }
+  .sound-category { background: #131828; border: 2px solid #1e293b; border-radius: 14px; padding: 16px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 14px; }
   .sound-category:hover { border-color: #60a5fa; transform: translateX(4px); }
   .sound-cat-icon { font-size: 1.6rem; width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #1e3a5f, #2a1a4a); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .sound-cat-info { flex: 1; }
   .sound-cat-title { font-size: 0.95rem; font-weight: 800; margin-bottom: 3px; }
   .sound-cat-desc { font-size: 0.75rem; color: #94a3b8; }
 
-  .sound-item {
-    background: #131828; border: 2px solid #1e293b; border-radius: 12px;
-    padding: 12px 8px; text-align: center; cursor: pointer; transition: all 0.2s;
-  }
+  .sound-item { background: #131828; border: 2px solid #1e293b; border-radius: 12px; padding: 12px 8px; text-align: center; cursor: pointer; transition: all 0.2s; }
   .sound-item:hover { border-color: #60a5fa; transform: translateY(-3px); }
   .sound-symbol { font-size: 1.3rem; font-weight: 900; color: #60a5fa; margin-bottom: 4px; }
   .sound-desc { font-size: 0.75rem; color: #4ade80; font-weight: 700; margin-bottom: 4px; }
   .sound-example { font-size: 0.62rem; color: #64748b; line-height: 1.2; }
 
-  /* ═══ VERB LIST ═══ */
+  /* VERBS */
   .verb-letters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; justify-content: center; }
-  .verb-letter-btn {
-    width: 40px; height: 40px; border-radius: 9px;
-    background: #131828; border: 2px solid #1e293b; color: #fff;
-    font-size: 0.9rem; font-weight: 900; cursor: pointer; transition: all 0.15s;
-  }
+  .verb-letter-btn { width: 40px; height: 40px; border-radius: 9px; background: #131828; border: 2px solid #1e293b; color: #fff; font-size: 0.9rem; font-weight: 900; cursor: pointer; transition: all 0.15s; }
   .verb-letter-btn:hover { border-color: #60a5fa; }
   .verb-letter-btn.active { background: #60a5fa; border-color: #60a5fa; color: #0a0e1a; }
   .verb-letter-btn.all-btn { width: 60px; font-size: 0.72rem; }
 
-  .verb-row {
-    background: #131828; border: 1px solid #1e293b; border-radius: 10px;
-    padding: 10px 12px; margin-bottom: 6px;
-    display: grid; grid-template-columns: 1.3fr 1.3fr 1.3fr 1.4fr; gap: 8px; align-items: center;
-    transition: all 0.15s;
-  }
+  .verb-row { background: #131828; border: 1px solid #1e293b; border-radius: 10px; padding: 10px 12px; margin-bottom: 6px; display: grid; grid-template-columns: 1.3fr 1.3fr 1.3fr 1.4fr; gap: 8px; align-items: center; transition: all 0.15s; }
   .verb-row:hover { border-color: #60a5fa; background: #1a2035; }
   .verb-row-v1 { font-size: 0.88rem; font-weight: 800; color: #fff; }
   .verb-row-v2 { font-size: 0.82rem; color: #60a5fa; font-weight: 700; }
   .verb-row-v3 { font-size: 0.82rem; color: #a78bfa; font-weight: 700; }
   .verb-row-hi { font-size: 0.75rem; color: #4ade80; font-weight: 700; }
 
-  /* ═══ VERB DETAIL ═══ */
-  .verb-header {
-    text-align: center; padding: 22px; border-radius: 14px;
-    background: linear-gradient(135deg, #1e3a5f, #2a1a4a);
-    margin-bottom: 16px;
-  }
+  .verb-header { text-align: center; padding: 22px; border-radius: 14px; background: linear-gradient(135deg, #1e3a5f, #2a1a4a); margin-bottom: 16px; }
   .verb-word-big { font-size: 2.2rem; font-weight: 900; color: #60a5fa; margin-bottom: 6px; }
   .verb-meaning { font-size: 1.15rem; font-weight: 800; color: #4ade80; margin-bottom: 6px; }
   .verb-usage-text { font-size: 0.85rem; color: #cbd5e1; }
 
-  /* ═══ BOOK-STYLE SECTION ═══ */
-  .lesson-section {
-    background: #131828; border: 1px solid #1e293b; border-radius: 14px;
-    padding: 18px; margin-bottom: 14px;
-  }
-  .lesson-section-title {
-    font-size: 0.95rem; font-weight: 800; color: #60a5fa;
-    margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid #1e293b;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .lesson-rule {
-    background: #0f1420; border-left: 3px solid #60a5fa;
-    padding: 10px 14px; border-radius: 8px; margin-bottom: 14px;
-    font-size: 0.85rem; color: #cbd5e1; line-height: 1.5;
-  }
+  /* BOOK SECTIONS */
+  .lesson-section { background: #131828; border: 1px solid #1e293b; border-radius: 14px; padding: 18px; margin-bottom: 14px; }
+  .lesson-section-title { font-size: 0.95rem; font-weight: 800; color: #60a5fa; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid #1e293b; display: flex; align-items: center; gap: 8px; }
+  .lesson-rule { background: #0f1420; border-left: 3px solid #60a5fa; padding: 10px 14px; border-radius: 8px; margin-bottom: 14px; font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; }
   .lesson-rule strong { color: #60a5fa; }
-  .example-row {
-    background: #0f1420; border-radius: 10px; padding: 10px 14px;
-    margin-bottom: 8px; display: flex; align-items: flex-start; gap: 12px;
-  }
-  .example-num {
-    width: 26px; height: 26px; border-radius: 50%;
-    background: #1e293b; color: #60a5fa; font-size: 0.72rem; font-weight: 900;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  }
+  .example-row { background: #0f1420; border-radius: 10px; padding: 10px 14px; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 12px; }
+  .example-num { width: 26px; height: 26px; border-radius: 50%; background: #1e293b; color: #60a5fa; font-size: 0.72rem; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .example-body { flex: 1; }
   .example-en { font-size: 0.9rem; color: #fff; font-weight: 700; margin-bottom: 3px; }
   .example-hi { font-size: 0.78rem; color: #94a3b8; }
 
-  /* ═══ GAME — MCQ ═══ */
+  /* GAME */
   .game-progress { background: #131828; border-radius: 100px; height: 6px; margin-bottom: 16px; overflow: hidden; }
   .game-progress-fill { background: #60a5fa; height: 100%; width: 0; transition: width 0.3s; }
 
-  .game-question {
-    background: #131828; border: 1px solid #334155; border-radius: 16px;
-    padding: 24px 18px; text-align: center; margin-bottom: 16px;
-  }
+  .game-question { background: #131828; border: 1px solid #334155; border-radius: 16px; padding: 24px 18px; text-align: center; margin-bottom: 16px; }
   .game-label { font-size: 0.68rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-weight: 800; }
   .game-q-emoji { font-size: 2.2rem; margin-bottom: 8px; display: block; }
   .game-q-text { font-size: 1.15rem; font-weight: 800; line-height: 1.45; margin-bottom: 6px; }
   .game-q-hint { font-size: 0.82rem; color: #94a3b8; }
 
   .game-options { display: flex; flex-direction: column; gap: 8px; }
-  .game-option {
-    background: #131828; border: 2px solid #1e293b; border-radius: 12px;
-    padding: 13px 16px; cursor: pointer; transition: all 0.15s;
-    font-size: 0.92rem; font-weight: 700; text-align: left; color: #fff;
-    display: flex; align-items: center; gap: 10px;
-  }
+  .game-option { background: #131828; border: 2px solid #1e293b; border-radius: 12px; padding: 13px 16px; cursor: pointer; transition: all 0.15s; font-size: 0.92rem; font-weight: 700; text-align: left; color: #fff; display: flex; align-items: center; gap: 10px; }
   .game-option:hover { border-color: #60a5fa; }
   .game-option.correct { border-color: #4ade80; background: rgba(74,222,128,0.1); color: #4ade80; }
   .game-option.wrong { border-color: #f87171; background: rgba(248,113,113,0.1); color: #f87171; }
-  .game-option-letter {
-    width: 28px; height: 28px; border-radius: 7px; background: #1e293b;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 900; flex-shrink: 0; font-size: 0.85rem;
-  }
+  .game-option-letter { width: 28px; height: 28px; border-radius: 7px; background: #1e293b; display: flex; align-items: center; justify-content: center; font-weight: 900; flex-shrink: 0; font-size: 0.85rem; }
 
   .game-feedback { text-align: center; font-size: 0.9rem; font-weight: 800; margin: 12px 0; min-height: 22px; }
-  .game-next {
-    width: 100%; padding: 14px; background: #60a5fa; border: none; color: #fff;
-    font-size: 0.95rem; font-weight: 800; border-radius: 12px; cursor: pointer;
-    display: none; transition: all 0.15s;
-  }
+  .game-next { width: 100%; padding: 14px; background: #60a5fa; border: none; color: #fff; font-size: 0.95rem; font-weight: 800; border-radius: 12px; cursor: pointer; display: none; transition: all 0.15s; }
   .game-next.show { display: block; }
-  .game-next:active { transform: scale(0.98); }
 
-  /* ═══ GAME — TRANSLATION PUZZLE ═══ */
-  .puzzle-prompt {
-    background: #131828; border: 1px solid #334155; border-radius: 16px;
-    padding: 22px 18px; text-align: center; margin-bottom: 16px;
-  }
+  /* PUZZLE */
+  .puzzle-prompt { background: #131828; border: 1px solid #334155; border-radius: 16px; padding: 22px 18px; text-align: center; margin-bottom: 16px; }
   .puzzle-prompt-lang { font-size: 0.68rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-weight: 800; }
-  .puzzle-prompt-text { font-size: 1.3rem; font-weight: 800; color: #4ade80; line-height: 1.4; }
+  .puzzle-prompt-text { font-size: 1.3rem; font-weight: 800; line-height: 1.4; }
   .puzzle-prompt-hint { font-size: 0.82rem; color: #94a3b8; margin-top: 6px; }
 
-  .puzzle-slots {
-    display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
-    min-height: 52px; padding: 12px; margin: 14px 0;
-    background: #0f1420; border-radius: 12px; border: 2px dashed #334155;
-  }
-  .puzzle-slot {
-    min-width: 55px; padding: 9px 12px;
-    background: #1e293b; border-radius: 8px;
-    font-size: 0.88rem; font-weight: 700; color: #fff;
-    cursor: pointer; transition: all 0.15s;
-  }
+  .puzzle-slots { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; min-height: 52px; padding: 12px; margin: 14px 0; background: #0f1420; border-radius: 12px; border: 2px dashed #334155; }
+  .puzzle-slot { min-width: 55px; padding: 9px 12px; background: #1e293b; border-radius: 8px; font-size: 0.88rem; font-weight: 700; color: #fff; cursor: pointer; transition: all 0.15s; }
   .puzzle-slot:hover { background: #334155; }
   .puzzle-slot.filled { background: #60a5fa; color: #0a0e1a; }
-  .puzzle-slot.correct { background: #4ade80; color: #0a0e1a; }
-  .puzzle-slot.wrong { background: #f87171; color: #fff; }
 
-  .puzzle-bank {
-    display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
-    margin: 14px 0;
-  }
-  .puzzle-word {
-    padding: 9px 14px; background: #1e293b; border: 2px solid #334155;
-    border-radius: 8px; font-size: 0.88rem; font-weight: 700; color: #fff;
-    cursor: pointer; transition: all 0.15s;
-  }
+  .puzzle-bank { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin: 14px 0; }
+  .puzzle-word { padding: 9px 14px; background: #1e293b; border: 2px solid #334155; border-radius: 8px; font-size: 0.88rem; font-weight: 700; color: #fff; cursor: pointer; transition: all 0.15s; }
   .puzzle-word:hover { border-color: #60a5fa; transform: translateY(-2px); }
   .puzzle-word.used { opacity: 0.2; pointer-events: none; }
 
-  /* ═══ RESULT ═══ */
-  .result-card {
-    background: #131828; border: 1px solid #334155; border-radius: 18px;
-    padding: 32px 20px; text-align: center;
-  }
+  /* RESULT */
+  .result-card { background: #131828; border: 1px solid #334155; border-radius: 18px; padding: 32px 20px; text-align: center; }
   .result-emoji { font-size: 3.2rem; margin-bottom: 12px; }
   .result-title { font-size: 1.6rem; font-weight: 900; margin-bottom: 6px; color: #60a5fa; }
   .result-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 18px 0; }
@@ -241,32 +155,19 @@
   .result-stat-value { font-size: 1.4rem; font-weight: 900; color: #60a5fa; }
   .result-stat-label { font-size: 0.7rem; color: #94a3b8; margin-top: 3px; text-transform: uppercase; }
 
-  /* ═══ BUTTONS ═══ */
-  .btn {
-    width: 100%; padding: 13px; border-radius: 11px;
-    background: #60a5fa; border: none; color: #fff;
-    font-size: 0.92rem; font-weight: 800; cursor: pointer;
-    margin-bottom: 8px; transition: all 0.15s;
-  }
+  .btn { width: 100%; padding: 13px; border-radius: 11px; background: #60a5fa; border: none; color: #fff; font-size: 0.92rem; font-weight: 800; cursor: pointer; margin-bottom: 8px; transition: all 0.15s; }
   .btn:hover { opacity: 0.9; }
-  .btn:active { transform: scale(0.98); }
   .btn.sec { background: #1e293b; }
 
-  .practice-btn {
-    position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
-    padding: 13px 32px; border-radius: 100px;
-    background: #60a5fa; border: none; color: #fff;
-    font-size: 0.95rem; font-weight: 800; cursor: pointer;
-    box-shadow: 0 8px 24px rgba(96,165,250,0.4);
-    z-index: 100;
-  }
-  .practice-btn:active { transform: translateX(-50%) scale(0.97); }
+  .list-item { background: #131828; border: 1px solid #1e293b; border-radius: 12px; padding: 14px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; }
+  .list-item:hover { border-color: #60a5fa; }
+  .list-title { font-size: 0.98rem; font-weight: 800; margin-bottom: 4px; }
+  .list-sub { font-size: 0.78rem; color: #94a3b8; }
 
   .empty-state { text-align: center; padding: 50px 20px; color: #64748b; }
   .empty-icon { font-size: 2.5rem; margin-bottom: 12px; opacity: 0.5; }
   .empty-text { font-size: 0.85rem; line-height: 1.5; }
 
-  /* ═══ MOBILE ═══ */
   @media (max-width: 640px) {
     body { padding: 10px; }
     .home-header h1 { font-size: 1.5rem; }
@@ -276,7 +177,6 @@
     .verb-row-hi { grid-column: 1 / -1; font-size: 0.68rem; }
     .verb-word-big { font-size: 1.8rem; }
     .puzzle-prompt-text { font-size: 1.1rem; }
-    .menu-row { grid-template-columns: 1fr 1fr; }
   }
 </style>
 </head>
@@ -292,7 +192,7 @@
     <div class="cards-grid" id="cards-grid"></div>
   </div>
 
-  <!-- CARD DETAIL PAGE (dynamic) -->
+  <!-- CARD DETAIL PAGE -->
   <div class="page" id="page-detail">
     <div class="page-header">
       <button class="back-btn" onclick="goBack()">← Back</button>
@@ -319,28 +219,34 @@
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
-<!-- MODULE FILES — load karo saari files                       -->
+<!-- CORE ENGINE -->
 <!-- ═══════════════════════════════════════════════════════════ -->
-
-<!-- Core -->
 <script src="core.js"></script>
 
-<!-- Card 1 — Letters -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CARD 1 — LETTERS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
 <script src="card1-letters-a-m.js"></script>
 <script src="card1-letters-n-z.js"></script>
 
-<!-- Card 2 — IPA + Indian Sounds -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CARD 2 — IPA + INDIAN SOUNDS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
 <script src="card2-ipa-vowels.js"></script>
 <script src="card2-ipa-consonants.js"></script>
 <script src="card2-indian-sounds.js"></script>
 
-<!-- Card 3 — Verbs A-Z -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CARD 3 — VERBS A-Z -->
+<!-- ═══════════════════════════════════════════════════════════ -->
 <script src="card3-verbs-a-f.js"></script>
 <script src="card3-verbs-g-m.js"></script>
 <script src="card3-verbs-n-s.js"></script>
 <script src="card3-verbs-t-z.js"></script>
 
-<!-- Card 4 — Be Verbs (9 files) -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CARD 4 — BE VERBS (9 files) -->
+<!-- ═══════════════════════════════════════════════════════════ -->
 <script src="card4-be-is.js"></script>
 <script src="card4-be-am.js"></script>
 <script src="card4-be-are.js"></script>
@@ -351,7 +257,9 @@
 <script src="card4-be-has.js"></script>
 <script src="card4-be-have.js"></script>
 
-<!-- Card 5 — Modern Verbs (8 files) -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CARD 5 — MODERN VERBS (8 files) -->
+<!-- ═══════════════════════════════════════════════════════════ -->
 <script src="card5-modern-can.js"></script>
 <script src="card5-modern-should.js"></script>
 <script src="card5-modern-may.js"></script>
@@ -361,18 +269,20 @@
 <script src="card5-modern-dare.js"></script>
 <script src="card5-modern-must.js"></script>
 
-<!-- Puzzle word banks -->
-<script src="puzzle-words-hi-en.js"></script>
-<script src="puzzle-words-en-hi.js"></script>
-
-<!-- Aggregators (combine all cards) -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- AGGREGATORS — Inke bina data load nahi hoga -->
+<!-- ═══════════════════════════════════════════════════════════ -->
 <script src="card1-3-aggregator.js"></script>
 <script src="card4-aggregator.js"></script>
 <script src="card5-aggregator.js"></script>
 
-<!-- Final init -->
+<!-- INIT -->
 <script>
-  if (typeof initApp === 'function') initApp();
+  if (typeof initApp === 'function') {
+    initApp();
+  } else {
+    console.error('core.js not loaded — initApp not found');
+  }
 </script>
 </body>
 </html>
