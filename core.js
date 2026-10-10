@@ -707,4 +707,274 @@ function renderPuzzleQuestion() {
   p.usedIdx = [];
 
   var isHiEn = q.mode === 'hi-en';
-  var label = isHiEn ? '🇮🇳 Hindi → English
+  var label = isHiEn ? '🇮🇳 Hindi → English' : '🇬🇧 English → Hindi';
+  var promptColor = isHiEn ? '#4ade80' : '#60a5fa';
+
+  var html = '<div class="puzzle-prompt">' +
+    '<div class="puzzle-prompt-lang">' + label + '</div>' +
+    '<div class="puzzle-prompt-text" style="color:' + promptColor + '">' + q.prompt + '</div>' +
+    '<div class="puzzle-prompt-hint">' + q.promptHint + '</div>' +
+    '</div>';
+  html += '<div class="puzzle-slots" id="puzzle-slots"></div>';
+  html += '<div class="puzzle-bank" id="puzzle-bank"></div>';
+  html += '<div class="game-feedback" id="puzzle-feedback"></div>';
+  html += '<button class="game-next" id="puzzle-next" onclick="nextPuzzleQ()">' +
+    (p.idx === total - 1 ? '🏁 Result' : '➡️ Next') + '</button>';
+
+  document.getElementById('game-content').innerHTML = html;
+  renderPuzzleSlotsAndBank();
+}
+
+function renderPuzzleSlotsAndBank() {
+  var p = state.puzzle;
+  if (!p) return;
+  var q = p.questions[p.idx];
+  var slotsEl = document.getElementById('puzzle-slots');
+  var bankEl = document.getElementById('puzzle-bank');
+  if (!slotsEl || !bankEl) return;
+
+  var slotsHtml = '';
+  for (var i = 0; i < q.answer.length; i++) {
+    var val = p.placed[i];
+    var cls = 'puzzle-slot' + (val ? ' filled' : '');
+    slotsHtml += '<div class="' + cls + '" onclick="removePuzzleSlot(' + i + ')">' + (val || '?') + '</div>';
+  }
+  slotsEl.innerHTML = slotsHtml;
+
+  bankEl.innerHTML = q.words.map(function(w, i) {
+    var used = p.usedIdx.indexOf(i) > -1;
+    return '<div class="puzzle-word' + (used ? ' used' : '') + '" onclick="placePuzzleSlot(' + i + ')">' + w + '</div>';
+  }).join('');
+
+  var complete = p.placed.length === q.answer.length && p.placed.every(function(v) { return v; });
+  var fb = document.getElementById('puzzle-feedback');
+  var nextBtn = document.getElementById('puzzle-next');
+
+  if (complete) {
+    var isCorrect = p.placed.every(function(v, i) { return v === q.answer[i]; });
+    if (isCorrect) {
+      fb.style.color = '#4ade80';
+      fb.textContent = '✅ Correct!';
+      nextBtn.classList.add('show');
+      nextBtn.textContent = p.idx === p.questions.length - 1 ? '🏁 Result' : '➡️ Next';
+    } else {
+      fb.style.color = '#f87171';
+      fb.textContent = '❌ Order गलत है — फिर try करो';
+      setTimeout(function() {
+        p.placed = [];
+        p.usedIdx = [];
+        renderPuzzleSlotsAndBank();
+      }, 800);
+    }
+  } else {
+    fb.style.color = '#94a3b8';
+    fb.textContent = p.placed.filter(function(x) { return x; }).length + '/' + q.answer.length + ' words placed';
+    nextBtn.classList.remove('show');
+  }
+}
+
+function placePuzzleSlot(wordIdx) {
+  var p = state.puzzle;
+  if (!p) return;
+  var q = p.questions[p.idx];
+  if (p.usedIdx.indexOf(wordIdx) > -1) return;
+  if (p.placed.length >= q.answer.length) return;
+  p.placed.push(q.words[wordIdx]);
+  p.usedIdx.push(wordIdx);
+  renderPuzzleSlotsAndBank();
+}
+
+function removePuzzleSlot(slotIdx) {
+  var p = state.puzzle;
+  if (!p) return;
+  if (slotIdx >= p.placed.length) return;
+  p.placed.splice(slotIdx, 1);
+  p.usedIdx.splice(slotIdx, 1);
+  renderPuzzleSlotsAndBank();
+}
+
+function nextPuzzleQ() {
+  var p = state.puzzle;
+  if (!p) return;
+  var q = p.questions[p.idx];
+  var isCorrect = p.placed.every(function(v, i) { return v === q.answer[i]; });
+  if (isCorrect) {
+    p.correct++;
+    p.idx++;
+    if (p.idx >= p.questions.length) {
+      showPuzzleResult();
+    } else {
+      renderPuzzleQuestion();
+    }
+  }
+}
+
+function showPuzzleResult() {
+  var p = state.puzzle;
+  var total = p.questions.length;
+  var pct = Math.round((p.correct / total) * 100);
+  var emoji = '🏆', title = 'Excellent!';
+  if (pct < 40) { emoji = '🌱'; title = 'Keep Trying!'; }
+  else if (pct < 70) { emoji = '👍'; title = 'Good Job!'; }
+  else if (pct < 90) { emoji = '🔥'; title = 'Great!'; }
+  else { emoji = '👑'; title = 'Legendary!'; }
+
+  document.getElementById('game-content').innerHTML =
+    '<div class="result-card">' +
+      '<div class="result-emoji">' + emoji + '</div>' +
+      '<div class="result-title">' + title + '</div>' +
+      '<div class="result-stats">' +
+        '<div class="result-stat"><div class="result-stat-value">' + p.correct + '/' + total + '</div><div class="result-stat-label">Correct</div></div>' +
+        '<div class="result-stat"><div class="result-stat-value">' + pct + '%</div><div class="result-stat-label">Accuracy</div></div>' +
+      '</div>' +
+      '<button class="btn" onclick="closeGame()">← Back</button>' +
+    '</div>';
+  document.getElementById('game-progress-fill').style.width = '100%';
+}
+
+// ═══════════════════════════════════════════════════════════
+// MCQ GAME
+// ═══════════════════════════════════════════════════════════
+function startMCQGame(questions, title, sub, returnFn) {
+  if (!questions || !questions.length) { alert('No questions'); return; }
+  state.gameQuestions = questions;
+  state.gameIdx = 0;
+  state.gameCorrect = 0;
+  state.gameWrong = 0;
+  state.gameType = 'mcq';
+  state.gameReturnFn = returnFn;
+
+  document.getElementById('game-title').textContent = title;
+  document.getElementById('game-subtitle').textContent = sub;
+  showPage('page-game');
+  renderMCQQuestion();
+}
+
+function renderMCQQuestion() {
+  var q = state.gameQuestions[state.gameIdx];
+  var total = state.gameQuestions.length;
+  document.getElementById('game-progress-fill').style.width = ((state.gameIdx + 1) / total * 100) + '%';
+
+  var html = '<div class="game-question">';
+  if (q.emoji) html += '<span class="game-q-emoji">' + q.emoji + '</span>';
+  if (q.label) html += '<div class="game-label">' + q.label + '</div>';
+  html += '<div class="game-q-text">' + q.question + '</div>';
+  if (q.hint) html += '<div class="game-q-hint">' + q.hint + '</div>';
+  html += '</div><div class="game-options">';
+  q.options.forEach(function(o, i) {
+    html += '<div class="game-option" onclick="pickMCQAnswer(' + i + ')">' +
+      '<div class="game-option-letter">' + String.fromCharCode(65 + i) + '</div>' +
+      '<div>' + o + '</div>' +
+      '</div>';
+  });
+  html += '</div>';
+  html += '<div class="game-feedback" id="game-feedback"></div>';
+  html += '<button class="game-next" id="game-next" onclick="nextMCQ()">' +
+    (state.gameIdx === total - 1 ? '🏁 Result' : '➡️ Next') + '</button>';
+
+  document.getElementById('game-content').innerHTML = html;
+}
+
+function pickMCQAnswer(idx) {
+  var q = state.gameQuestions[state.gameIdx];
+  var opts = document.querySelectorAll('.game-option');
+  opts.forEach(function(o) { o.style.pointerEvents = 'none'; });
+  var fb = document.getElementById('game-feedback');
+
+  if (q.options[idx] === q.answer) {
+    opts[idx].classList.add('correct');
+    fb.style.color = '#4ade80';
+    fb.textContent = '✅ Correct!';
+    state.gameCorrect++;
+    document.getElementById('game-next').classList.add('show');
+  } else {
+    opts[idx].classList.add('wrong');
+    fb.style.color = '#f87171';
+    fb.textContent = '❌ गलत — फिर try करो';
+    setTimeout(function() {
+      opts.forEach(function(o) {
+        o.classList.remove('wrong', 'correct');
+        o.style.pointerEvents = 'auto';
+      });
+      fb.style.color = '#60a5fa';
+      fb.textContent = '🔄 फिर से try करो';
+    }, 700);
+  }
+}
+
+function nextMCQ() {
+  state.gameIdx++;
+  if (state.gameIdx >= state.gameQuestions.length) {
+    showMCQResult();
+  } else {
+    renderMCQQuestion();
+  }
+}
+
+function showMCQResult() {
+  var total = state.gameQuestions.length;
+  var correct = state.gameCorrect;
+  var pct = Math.round((correct / total) * 100);
+  var emoji = '🏆', title = 'Excellent!';
+  if (pct < 40) { emoji = '🌱'; title = 'Keep Trying!'; }
+  else if (pct < 70) { emoji = '👍'; title = 'Good Job!'; }
+  else if (pct < 90) { emoji = '🔥'; title = 'Great!'; }
+  else { emoji = '👑'; title = 'Legendary!'; }
+
+  document.getElementById('game-content').innerHTML =
+    '<div class="result-card">' +
+      '<div class="result-emoji">' + emoji + '</div>' +
+      '<div class="result-title">' + title + '</div>' +
+      '<div class="result-stats">' +
+        '<div class="result-stat"><div class="result-stat-value">' + correct + '/' + total + '</div><div class="result-stat-label">Correct</div></div>' +
+        '<div class="result-stat"><div class="result-stat-value">' + pct + '%</div><div class="result-stat-label">Accuracy</div></div>' +
+      '</div>' +
+      '<button class="btn" onclick="restartMCQ()">🔁 Try Again</button>' +
+      '<button class="btn sec" onclick="closeGame()">← Back</button>' +
+    '</div>';
+  document.getElementById('game-progress-fill').style.width = '100%';
+}
+
+function restartMCQ() {
+  state.gameIdx = 0;
+  state.gameCorrect = 0;
+  state.gameWrong = 0;
+  renderMCQQuestion();
+}
+
+// ═══════════════════════════════════════════════════════════
+// CLOSE GAME
+// ═══════════════════════════════════════════════════════════
+function closeGame() {
+  var returnFn = state.gameReturnFn;
+  state.gameReturnFn = null;
+  state.gameQuestions = [];
+  state.gameIdx = 0;
+  state.puzzle = null;
+
+  if (returnFn) {
+    returnFn();
+  } else {
+    openCard(state.currentCardIdx);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// UTILS
+// ═══════════════════════════════════════════════════════════
+function shuffle(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+  }
+  return a;
+}
+
+// ═══════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════
+function initApp() {
+  renderHome();
+  console.log('📚 English Mastery — ready');
+}
